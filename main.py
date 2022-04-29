@@ -1,10 +1,13 @@
 import os
 
-route = './'
-l_archive = sorted([archive.name for archive in os.scandir(route) if archive.is_file()])
+if True:
+    route = r"C:\Users\baron\desktop\dossier"
+    l_archive = sorted([archive.name for archive in os.scandir(route) if archive.is_file()])
+
+    base_command_string = r"c:\ffmpeg\bin\ffmpeg.exe -i"
+    end_command_string = r'-codec copy -metadata title="" '
 
 
-def edit_media_data():
-    for f in range(0, len(l_archive[:-1])):
-        os.system(f"c:/users/baron/desktop/ffmpeg/bin/ffmpeg.exe -i '{l_archive[f]}' -codec copy -metadata title='' '{l_archive[f]}.new'")
-        os.system(f"rename '{l_archive[f]}.new' '{l_archive[f]}")
+    for file in l_archive:
+        new_file_name = str(file) + ".new.mkv"
+        os.system(base_command_string + " " + str(file) + " "+ end_command_string + new_file_name)
